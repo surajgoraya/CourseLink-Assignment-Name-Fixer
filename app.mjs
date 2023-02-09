@@ -2,7 +2,7 @@
  * @name CourseLinkFixer
  * @file app.mjs
  * @description The entry point for the CourseLink fixer script.
- * @author @surajgoraya <me@surajgoraya.ca>
+ * @author gorayas
  * @version 0.0.2
  */
 
@@ -12,7 +12,7 @@ import {
     removeUnneededFiles,
     renameFiles,
     getNames
-} from './functions.mjs';
+} from './src/functions.mjs';
 
 log(`- CourseLink Fixer x V ${internal.version} - `, 'big');
 
