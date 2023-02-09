@@ -23,7 +23,7 @@ const log = (text, type) => {
             console.log(`[CourseLink Fixer]: ${chalk.green(text)}`);
             break;          
         default:
-            console.log(`[CourseLink Fixer]: ${chalk.dim(text)}`);
+            console.log(`${chalk.dim('[CourseLink Fixer]: ' + text)}`);
             break;
     }
 }

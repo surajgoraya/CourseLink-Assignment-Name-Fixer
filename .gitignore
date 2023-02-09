@@ -19,5 +19,8 @@ current
 # Ignore the non-presentation folder.
 not_current
 
+# Ignore any excel files added into the folder for marking.
+*.xlsx
+
 # The macOS devil itself.
 .DS_Store
