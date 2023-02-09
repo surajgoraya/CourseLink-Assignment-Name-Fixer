@@ -5,7 +5,7 @@ import chalk from 'chalk';
  * @param {String} text String of text you would like to log
  * @param {('error'|'debug'|'info'|'warn'|'success'|'big')} type Type of console message you want to print, this will change the colour.
  */
-const log = (text, type) => { 
+const log = (text, type) => {
     switch (type) {
         case 'error':
             console.log(`[CourseLink Fixer]: ${chalk.red(text)}`);
@@ -21,7 +21,7 @@ const log = (text, type) => {
             break;
         case 'success':
             console.log(`[CourseLink Fixer]: ${chalk.green(text)}`);
-            break;          
+            break;
         default:
             console.log(`${chalk.dim('[CourseLink Fixer]: ' + text)}`);
             break;
@@ -37,5 +37,5 @@ const log = (text, type) => {
 const correct_name_orientation = (nameWithComma) => {
     const split_name = nameWithComma.split(',');
     return `${split_name[1].trim()} ${split_name[0].trim()}`
-} 
-export {log, correct_name_orientation}
+}
+export { log, correct_name_orientation }

@@ -7,20 +7,18 @@
  */
 
 import internal from './package.json' assert { type: "json" };
-
 import {
     removeUnneededFiles,
     renameFiles,
     getNames
 } from './src/functions.mjs';
 
-log(`- CourseLink Fixer x V ${internal.version} - `, 'big');
 
+log(`- CourseLink Fixer x V ${internal.version} - `, 'big');
 log('Starting...', 'info');
 log('Importing sanitized names file...', 'debug');
 
 const sorted_names = await getNames();
-
 if (sorted_names.length) {
     log('Read names, keeping only needed files...', 'success');
     await removeUnneededFiles(sorted_names);
