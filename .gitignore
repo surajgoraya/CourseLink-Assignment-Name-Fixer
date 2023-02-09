@@ -1,0 +1,23 @@
+#Node Modules ofc.
+node_modules
+
+# Ignore Brightspace/CourseLink .zip assignment exports
+*.zip
+
+# Ignore the current folder
+current
+
+# Ignore all copies of the current folder.
+current?*
+
+# Ignore list of names.
+names.csv
+
+# Ignore the presentation folder.
+current
+
+# Ignore the non-presentation folder.
+not_current
+
+# The macOS devil itself.
+.DS_Store
