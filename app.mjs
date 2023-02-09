@@ -1,5 +1,6 @@
 import { parse } from 'csv-parse';
 import { correct_name_orientation, log } from './lib.mjs';
+import internal from './package.json' assert { type: "json" };
 
 import {
     open,
@@ -19,23 +20,26 @@ const _NOT_NEEDED_THIS_WEEK = './not_current';
 const _CL_GLOBAL_DELIM = ' - ';
 const _IGNORED_FILES = ['.DS_Store', 'excluded_export.json', 'included_export.json', 'index.html'];
 
-log('Starting...');
-log('Importing sanitized names file...');
+
+log(`- CourseLink Fixer x V ${internal.version} - `, 'big');
+
+log('Starting...', 'info');
+log('Importing sanitized names file...', 'debug');
 
 const sorted_names = await getNames();
 
 if (sorted_names.length) {
-    log('Read names, keeping only needed files...');
+    log('Read names, keeping only needed files...', 'success');
     await remove_unneeded(sorted_names);
     
-    log('Files not needed for this week moved, renaming...');
+    log('Files not needed for this week moved, renaming...', 'success');
     await rename_files(sorted_names);
 } else {
-    log('Names File Empty! - Exiting.');
+    log('Names File Empty! - Exiting.', 'error');
     process.exit(1);
 }
 
-log('Done!');
+log('Done!', 'success');
 
 async function remove_unneeded(sorted_names) {
     const currentFiles = await readdir(_THIS_WEEK);
@@ -49,7 +53,7 @@ async function remove_unneeded(sorted_names) {
     
     for (const fileName of currentFiles) {
         
-        if(_IGNORED_FILES.includes(fileName)){log('Skipping Ignored File - ' + fileName); continue;}
+        if(_IGNORED_FILES.includes(fileName)){log('Skipping Ignored File - ' + fileName, 'debug'); continue;}
 
         const splitFileName = fileName.split(_CL_GLOBAL_DELIM);
         const studentName = splitFileName[1];
@@ -61,7 +65,7 @@ async function remove_unneeded(sorted_names) {
             
             let return_code = await rename(`${_THIS_WEEK}/${fileName}`, `${_NOT_NEEDED_THIS_WEEK}/${fileName}`);
             if(return_code){
-                log('Something went wrong while cleaning up the files...');
+                log('Something went wrong while cleaning up the files...', 'error');
                 process.exit(1);
             }
         } else {
@@ -81,7 +85,7 @@ async function rename_files (sorted_names) {
     const currentFiles = await readdir(_THIS_WEEK);
     for (const fileName of currentFiles){
         
-        if(_IGNORED_FILES.includes(fileName)){log('Skipping Ignored File - ' + fileName); continue;}
+        if(_IGNORED_FILES.includes(fileName)){log('Skipping Ignored File - ' + fileName, 'debug'); continue;}
 
         const splitFileName = fileName.split(_CL_GLOBAL_DELIM);
         const s_index = sorted_names.findIndex((studentName)=> studentName === correct_name_orientation(splitFileName[1]));
@@ -90,12 +94,12 @@ async function rename_files (sorted_names) {
         if(!existsSync(correct_file_name)){
             let return_code = await rename(`${_THIS_WEEK}/${fileName}`, correct_file_name);
             if(return_code){
-                log('Something went wrong while renaming the files...');
+                log('Something went wrong while renaming the files...', 'error');
                 process.exit(1);
             }
         } else {
-            log('WARN - Looks like a file already exists in the directory with the name ' + correct_file_name);
-            log('WARN - Going to compare the dates and save the newest one...');
+            log('WARN - Looks like a file already exists in the directory with the name ' + correct_file_name, 'warn');
+            log('WARN - Going to compare the dates and save the newest one...', 'warn');
 
             const moved_file = openSync(correct_file_name);
             const to_be_moved = openSync(`${_THIS_WEEK}/${fileName}`);
@@ -108,7 +112,7 @@ async function rename_files (sorted_names) {
                 close(to_be_moved);
                 let return_code = await rename(`${_THIS_WEEK}/${fileName}`, correct_file_name);
                 if(return_code){
-                    log('Something went wrong while renaming the files...');
+                    log('Something went wrong while renaming the files...', 'error');
                     process.exit(1);
                 }
             } else {
@@ -130,7 +134,7 @@ async function getNames() {
         delimiter: ','
     }, function (err, records) {
         if (err) {
-            log('An Error occurred! - Exiting.');
+            log('An Error occurred! - Exiting.', 'error');
             process.exit(1);
         }
         for (const record of records) {
