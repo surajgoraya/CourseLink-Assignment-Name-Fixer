@@ -7,6 +7,9 @@
  */
 
 import internal from './package.json' assert { type: "json" };
+
+import { log } from './src/lib.mjs';
+
 import {
     removeUnneededFiles,
     renameFiles,
