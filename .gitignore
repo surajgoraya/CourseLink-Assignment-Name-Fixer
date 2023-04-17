@@ -24,3 +24,6 @@ not_current
 
 # The macOS devil itself.
 .DS_Store
+
+# Ignore the ./dist folder since releases should be under the Releases tab on GitHub
+dist
