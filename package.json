@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.mjs",
     "clean": "rm -r ./current && rm -r ./not_current && rm *.zip && rm *.xlsx && echo \"Cleaned all files\"",
+    "build": "npx esbuild app.mjs  --bundle --outfile=./dist/build.js --format=cjs --platform=node && pkg ./dist/build.js -t node16-macos -o ./dist/cl_fixer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gorayas",
@@ -13,5 +14,9 @@
   "dependencies": {
     "chalk": "^5.2.0",
     "csv": "^6.2.7"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "pkg": "^5.8.1"
   }
 }

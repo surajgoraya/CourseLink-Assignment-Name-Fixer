@@ -14,7 +14,7 @@ This program is fairly simple, however, (currently) makes some assumptions as to
 1. Place the `ExampleCounterexample XX Download XXX X, 2023 XXX XX.zip` file into the folder where the script will run.
 2. Extract it, and rename the extracted folder `current`.
 3. Paste this weeks names into the `names.csv` file.
-4. Run the script by typing in `npm start` or `./clfixer` (if using the complied version).
+4. Run the script by typing in `npm start` or `./cl_fixer` (if using the complied version).
 5. Watch it's magic! The script should just leave the current weeks assignments in the `current` folder.
 
 ## Compiling / Contributing
