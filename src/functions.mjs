@@ -24,7 +24,14 @@ import {
  * @param {String[]} sorted_names The array of names of people going this week.
  */
 async function removeUnneededFiles(sorted_names) {
-    const currentFiles = await readdir(_THIS_WEEK);
+    let currentFiles = null;
+
+    try {
+        currentFiles = await readdir(_THIS_WEEK);
+    } catch (ex) {
+        log(`Can't find 'current' folder. Remember to rename the *extracted* .zip folder to 'current' and ensure it's in the same directory as this exec.`, 'error');
+        process.exit(2);
+    }
 
     try {
         await mkdir(path.join(_NOT_NEEDED_THIS_WEEK));
@@ -70,7 +77,15 @@ async function removeUnneededFiles(sorted_names) {
  * @param {String[]} sorted_names The array of names of people going this week.
  */
 async function renameFiles(sorted_names) {
-    const currentFiles = await readdir(_THIS_WEEK);
+    let currentFiles = null;
+
+    try {
+        currentFiles = await readdir(_THIS_WEEK);
+    } catch (ex) {
+        log(`Can't find 'current' folder. Remember to rename the *extracted* .zip folder to 'current' and ensure it's in the same directory as this exec.`, 'error');
+        process.exit(2);
+    }
+
     for (const fileName of currentFiles) {
 
         if (_IGNORED_FILES.includes(fileName)) { log('Skipping Ignored File - ' + fileName, 'debug'); continue; }
@@ -118,7 +133,16 @@ async function renameFiles(sorted_names) {
  * @returns {String[]} An array of all the names going this week.
  */
 async function getNames() {
-    const file = await open(`${_CURRENT_WEEK_SANITIZED}`, 'r');
+    let file = null;
+
+    //Panic and exit if there's no sanitized names file
+    try {
+        file = await open(`${_CURRENT_WEEK_SANITIZED}`, 'r');
+    } catch (ex) {
+        log('Error: Can\'t find names.csv file, this is needed for the script to run', 'error');
+        process.exit(1);
+    }
+
     const data = await file.readFile({ encoding: 'utf-8' });
     const _ALL_NAMES = [];
 
