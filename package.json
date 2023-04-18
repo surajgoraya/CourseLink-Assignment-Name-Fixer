@@ -1,6 +1,6 @@
 {
   "name": "courselink_fixer",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Fixes file names using CSV files to hide details from the CourseLink download",
   "main": "app.js",
   "scripts": {
