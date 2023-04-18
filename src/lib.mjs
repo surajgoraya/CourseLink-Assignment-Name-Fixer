@@ -3,7 +3,7 @@ import chalk from 'chalk';
 /**
 * Logs things out to the console with a standardized prefix
  * @param {String} text String of text you would like to log
- * @param {('error'|'debug'|'info'|'warn'|'success'|'big')} type Type of console message you want to print, this will change the colour.
+ * @param {('error'|'debug'|'info'|'warn'|'success'|'big'|'note')} type Type of console message you want to print, this will change the colour.
  */
 const log = (text, type) => {
     switch (type) {
@@ -12,6 +12,9 @@ const log = (text, type) => {
             break;
         case 'big':
             console.log(`${chalk.bold(chalk.blueBright(text))}`);
+            break;
+        case 'note':
+            console.log(`${chalk.italic(chalk.magentaBright(text))}`);
             break;
         case 'info':
             console.log(`[CourseLink Fixer]: ${chalk.blueBright(text)}`);

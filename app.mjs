@@ -27,6 +27,7 @@ import {
 async function run() {
 
     log(`- CourseLink Fixer x V ${internal.version} - `, 'big');
+    log(`Source & Instructions Available at: https://github.com/surajgoraya`, 'note');
     log('Starting...', 'info');
     log('Importing sanitized names file...', 'debug');
 
