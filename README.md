@@ -17,6 +17,25 @@ This program is fairly simple, however, (currently) makes some assumptions as to
 4. Run the script by typing in `npm start` or `./cl_fixer` (if using the complied version).
 5. Watch it's magic! The script should just leave the current weeks assignments in the `current` folder.
 
+### Expected Output
+
+The output for the script should yield something like this if successfully run:
+```
+- CourseLink Fixer x V 0.0.1 - 
+[CourseLink Fixer]: Starting...
+[CourseLink Fixer]: Importing sanitized names file...
+[CourseLink Fixer]: Read names, keeping only needed files...
+[CourseLink Fixer]: Skipping Ignored File - index.html
+[CourseLink Fixer]: Files not needed for this week moved, renaming...
+[CourseLink Fixer]: WARN - Looks like a file already exists in the directory with the name ./current/23 - LASTNAME_FIRSTNAME_Ex11.pdf
+[CourseLink Fixer]: WARN - Going to compare the dates and save the newest one...
+[CourseLink Fixer]: Skipping Ignored File - excluded_export.json
+[CourseLink Fixer]: Skipping Ignored File - included_export.json
+[CourseLink Fixer]: Skipping Ignored File - index.html
+[CourseLink Fixer]: Done!
+
+```
+
 ## Compiling / Contributing
 
 This project is built on Node.js, and requires Node.js and npm be installed on the computer. Contributions are welcome via pull request.
