@@ -40,5 +40,8 @@ The output for the script should yield something like this if successfully run:
 
 This project is built on Node.js, and requires Node.js and npm be installed on the computer. Contributions are welcome via pull request.
 
+Compiling the project isn't required (you can run it like any other node project `npm run start`), but it can make it easier to run the script. This project uses pkg and ncc to achieve a single exec being created.
+The command to build is `npm run build`, by default this only builds for macOS, however, the command can be modified to update the targets.
+
 ## Releases / Source
 Source & Download Located here: [https://github.com/surajgoraya/CourseLink-Assignment-Name-Fixer](https://github.com/surajgoraya/CourseLink-Assignment-Name-Fixer)
